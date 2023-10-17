@@ -1,4 +1,4 @@
-class TextUrlapElem {
+class NumberUrlapElem {
     #key = "";
     #leiro = {};
     #value = "";
@@ -7,7 +7,7 @@ class TextUrlapElem {
       this.#key = key;
       this.#leiro = leiro;
       this.formElem = formElem;
-      this.#textElem();
+      this.#numberElem();
   
       this.inputElem = $(`#${this.#key}`);
       this.validElem = this.formElem
@@ -15,22 +15,14 @@ class TextUrlapElem {
         .children(".valid");
       this.invalidElem = this.formElem
         .children("div:last-child")
-        .children(".invalid"); //más megoldás: this.invalidElem = $(".invalid:last")
-      this.inputElem.on("keyup", () => {
-        this.#value = this.inputElem.val();
-        let reg = this.#leiro.regex;
-        let regObj = new RegExp(reg);
-  
-        if (regObj.test(this.#value)) {
-          this.#valid = true;
-          this.validElem.removeClass("elrejt");
-          this.invalidElem.addClass("elrejt");
-        } else {
-          this.#valid = false;
-          this.invalidElem.removeClass("elrejt");
-          this.validElem.addClass("elrejt");
-        }
-      });
+        .children(".invalid");
+      this.#value = this.inputElem.val();
+      console.log(this.#value);
+      if (this.#value <= 2023 && this.#value >= 1900) {
+        this.#valid = true;
+      } else {
+        this.#valid = false;
+      }
     }
   
     get value() {
@@ -45,28 +37,24 @@ class TextUrlapElem {
       return this.#key;
     }
   
-    #textElem() {
+    #numberElem() {
       let txt = `
           <div class="mb-3 mt-3">
               <label for="${this.#key}" 
               class="form-label">
               ${this.#leiro.megjelenes}
               </label>
-              
+          
               <input type="${this.#leiro.tipus}" class="form-control" 
               id="${this.#key}" 
-              name="${this.#key}"
-              placeholder="${this.#leiro.placeholder}"  
-              patter="${this.#leiro.regex}"
+              name="${this.#key}" 
+              min="${this.#leiro.regex.min}"
+              max="${this.#leiro.regex.max}"
               value="${this.#leiro.value}">
-              
-              <div class="valid elrejt">OK</div>
-              <div class="invalid elrejt">${this.#leiro.validalas}</div>
           </div>
           `;
   
       this.formElem.append(txt);
     }
   }
-  
-  export default TextUrlapElem;
+  export default NumberUrlapElem;
