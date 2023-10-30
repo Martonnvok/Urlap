@@ -7,7 +7,7 @@ class EmailUrlapElem {
         this.#key = key;
         this.#leiro = leiro;
         this.formElem = formElem;
-        this.#telElem();
+        this.#emailElem();
 
         this.inputElem = $(`#${this.#key}`);
         this.validElem = this.formElem
@@ -37,13 +37,21 @@ class EmailUrlapElem {
         return this.#key;
     }
 
-    #telElem() {
+    #emailElem() {
         let txt = `
-          <div class="mb-3 mt-3">
-              <label for="${this.#key.tipus}" class="form-label">${this.#leiro.megjelenes}</label>
-              <input type="${this.#leiro.tipus}" class="form-control" id="${this.#key}" name="${this.#key.tipus}">
-          </div>
-          `;
+        <div class="mb-3 mt-3">
+            <label for="${this.#key}" 
+            class="form-label">
+            ${this.#leiro.megjelenes}
+            </label>
+        
+            <input type="${this.#leiro.tipus}" class="form-control" 
+            id="${this.#key}" 
+            name="${this.#key}" 
+            placeholder="${this.#leiro.placeholder}"  
+            value="${this.#leiro.value}">
+        </div>
+        `;
 
         this.formElem.append(txt);
     }

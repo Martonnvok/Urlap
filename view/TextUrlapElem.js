@@ -57,7 +57,7 @@ class TextUrlapElem {
               id="${this.#key}" 
               name="${this.#key}"
               placeholder="${this.#leiro.placeholder}"  
-              patter="${this.#leiro.regex}"
+              pattern="${this.#leiro.regex}"
               value="${this.#leiro.value}">
               
               <div class="valid elrejt">OK</div>

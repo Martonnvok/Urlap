@@ -20,16 +20,18 @@ export const urlapleiro ={
     email:{
         megjelenes:"Email cím",
         tipus:"email",
+        value:"",
         placeholder:"valaki@gmail.com",
+        regex: "[A-Z][a-z]{2,15}",
        
     },
 
     phone:{
         megjelenes:"Elérhetőség",
-        placeholder:"+368888888",
         tipus:"phone",
-        label:"tel",
-        pattern:"[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        value:"",
+        placeholder:"+368888888",
+        regex:"[0-9]{3}-[0-9]{2}-[0-9]{3}"
     }
 
 }
