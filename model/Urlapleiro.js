@@ -12,9 +12,11 @@ export const urlapleiro ={
         megjelenes:"Születési év",
         tipus:"number",
         value:"2000",
-        regex: "[A-Z][a-z]{2,15}",
-        min:1000,
-        max:2000
+        regex: {
+            min: 1900,
+            max: 2023
+        },
+        validalas: "Az érték 1900-ál kisebb vagy 2023-ál nagyobb"
     },
 
     email:{
@@ -22,7 +24,8 @@ export const urlapleiro ={
         tipus:"email",
         value:"",
         placeholder:"valaki@gmail.com",
-        regex: "[A-Z][a-z]{2,15}",
+        regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",
+        validalas: "Az email címet kisbetüvel írjuk, @ jellel pl: m@gmail.com"
        
     },
 
@@ -31,7 +34,8 @@ export const urlapleiro ={
         tipus:"phone",
         value:"",
         placeholder:"+368888888",
-        regex:"[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        regex:/^\+\d{11}$/,
+        validalas: "+ jellel kezdődjön egybe írva"
     }
 
 }

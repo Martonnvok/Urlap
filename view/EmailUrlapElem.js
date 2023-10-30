@@ -16,13 +16,21 @@ class EmailUrlapElem {
         this.invalidElem = this.formElem
             .children("div:last-child")
             .children(".invalid");
-        this.#value = this.inputElem.val();
-        console.log(this.#value);
-        if (this.#value <= 2023 && this.#value >= 1900) {
-            this.#valid = true;
-        } else {
-            this.#valid = false;
-        }
+        this.inputElem.on("input", () => {
+            this.#value = this.inputElem.val();
+            let regex = this.#leiro.regex;
+            let reg= new RegExp(regex);
+
+            if (reg.test(this.#value)) {
+                this.#valid = true;
+                this.validElem.removeClass("elrejt");
+                this.invalidElem.addClass("elrejt");
+            } else {
+                this.#valid = false;
+                this.invalidElem.removeClass("elrejt");
+                this.validElem.addClass("elrejt");
+            }
+        });
     }
 
     get value() {
@@ -47,9 +55,13 @@ class EmailUrlapElem {
         
             <input type="${this.#leiro.tipus}" class="form-control" 
             id="${this.#key}" 
-            name="${this.#key}" 
+            name="${this.#key}"
             placeholder="${this.#leiro.placeholder}"  
+            pattern="${this.#leiro.regex}"
             value="${this.#leiro.value}">
+            
+            <div class="valid elrejt">Rendben</div>
+            <div class="invalid elrejt">${this.#leiro.validalas}</div>
         </div>
         `;
 
