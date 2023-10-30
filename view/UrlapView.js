@@ -1,5 +1,7 @@
 import TextUrlapElem from "./TextUrlapElem.js";
 import NumberUrlapElem from "./NumberUrlapElem.js";
+import EmailUrlapElem from "./EmailUrlapElem.js";
+import TelUrlapElem from "./TelUrlapElem.js";
 
 class UrlapView {
   #leiro = {};
@@ -18,23 +20,23 @@ class UrlapView {
     this.submitElem.on("click", (event) => {
       event.preventDefault();
       this.#osszesElemValidE = true;
-      this.#urlapElemLista.forEach(elem=>{
+      this.#urlapElemLista.forEach(elem => {
         console.log(elem)
         this.#osszesElemValidE = this.#osszesElemValidE && elem.valid;
       })
-      if(this.#osszesElemValidE){
-        this.#urlapElemLista.forEach((elem)=>{
-            this.#urlapAdat[elem.key] = elem.value;
+      if (this.#osszesElemValidE) {
+        this.#urlapElemLista.forEach((elem) => {
+          this.#urlapAdat[elem.key] = elem.value;
         })
         console.log("Valid az űrlap")
-      }else{
+      } else {
         console.log("Nem valid az űrlap");
       }
       console.log(this.#urlapAdat)
     });
   }
 
-  get urlapAdat(){
+  get urlapAdat() {
     return this.#urlapAdat;
   }
 
@@ -45,7 +47,13 @@ class UrlapView {
           this.#urlapElemLista.push(new TextUrlapElem(key, this.#leiro[key], this.formElem))
           break;
         case "number":
-            this.#urlapElemLista.push(new NumberUrlapElem(key, this.#leiro[key], this.formElem));
+          this.#urlapElemLista.push(new NumberUrlapElem(key, this.#leiro[key], this.formElem));
+          break;
+        case "email":
+          this.#urlapElemLista.push(new EmailUrlapElem(key, this.#leiro[key], this.formElem));
+          break;
+        case "phone":
+          this.#urlapElemLista.push(new TelUrlapElem(key, this.#leiro[key], this.formElem));
           break;
         default:
       }
